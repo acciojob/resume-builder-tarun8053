@@ -18,6 +18,8 @@ export default function Education() {
 
   return (
     <>
+    <h2>Add your Education Details</h2>
+
       <input name="courseName" onChange={e=>setEdu({...edu,courseName:e.target.value})}/>
       <input name="completionYear" onChange={e=>setEdu({...edu,completionYear:e.target.value})}/>
       <input name="college" onChange={e=>setEdu({...edu,college:e.target.value})}/>
