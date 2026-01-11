@@ -13,6 +13,8 @@ export default function Projects() {
 
   return (
     <>
+    <h2>Add your Mini Projects</h2>
+
       <input name="projectName" onChange={e=>setProj({...proj,projectName:e.target.value})}/>
       <input name="techStack" onChange={e=>setProj({...proj,techStack:e.target.value})}/>
       <input name="description" onChange={e=>setProj({...proj,description:e.target.value})}/>
