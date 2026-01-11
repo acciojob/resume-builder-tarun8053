@@ -7,6 +7,8 @@ export default function Profile() {
 
   return (
     <>
+    <h2>Add your profile details</h2>
+
       <input
         type="text"
         name="fname"
