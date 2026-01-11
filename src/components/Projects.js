@@ -5,52 +5,20 @@ export default function Projects() {
   const dispatch = useDispatch();
   const [proj, setProj] = useState({});
 
+  const addProject = () => {
+    if (proj.projectName && proj.techStack && proj.description) {
+      dispatch({ type: "ADD_PROJECT", payload: proj });
+    }
+  };
+
   return (
     <>
-      <input
-        type="text"
-        name="projectName"
-        placeholder="Project Name"
-        onChange={(e) =>
-          setProj({ ...proj, projectName: e.target.value })
-        }
-      />
+      <input name="projectName" onChange={e=>setProj({...proj,projectName:e.target.value})}/>
+      <input name="techStack" onChange={e=>setProj({...proj,techStack:e.target.value})}/>
+      <input name="description" onChange={e=>setProj({...proj,description:e.target.value})}/>
 
-      <input
-        type="text"
-        name="techStack"
-        placeholder="Tech Stack"
-        onChange={(e) =>
-          setProj({ ...proj, techStack: e.target.value })
-        }
-      />
-
-      <input
-        type="text"
-        name="description"
-        placeholder="Description"
-        onChange={(e) =>
-          setProj({ ...proj, description: e.target.value })
-        }
-      />
-
-      <button
-        id="add_project"
-        onClick={() =>
-          dispatch({ type: "ADD_PROJECT", payload: proj })
-        }
-      >
-        Add
-      </button>
-
-      <button
-        id="delete"
-        onClick={() =>
-          dispatch({ type: "DEL_PROJECT" })
-        }
-      >
-        Delete
-      </button>
+      <button id="add_project" onClick={addProject}>Add</button>
+      <button id="delete" onClick={()=>dispatch({type:"DEL_PROJECT"})}>Delete</button>
     </>
   );
 }
