@@ -1,0 +1,36 @@
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
+export default function Skills() {
+  const dispatch = useDispatch();
+  const [skill, setSkill] = useState("");
+
+  return (
+    <>
+      <input
+        type="text"
+        name="skill"
+        placeholder="Skill"
+        onChange={(e) => setSkill(e.target.value)}
+      />
+
+      <button
+        id="add_skill"
+        onClick={() =>
+          dispatch({ type: "ADD_SKILL", payload: skill })
+        }
+      >
+        Add
+      </button>
+
+      <button
+        id="delete_skill"
+        onClick={() =>
+          dispatch({ type: "DEL_SKILL" })
+        }
+      >
+        Delete
+      </button>
+    </>
+  );
+}
