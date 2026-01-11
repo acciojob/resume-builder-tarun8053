@@ -1,62 +1,49 @@
-import React, { useState } from "react";
+import React from "react";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import store from "./store";
 
-function App() {
-  const [skillsCount, setSkillsCount] = useState("");
-  const [projectCount, setProjectCount] = useState("");
-  const [socialCount, setSocialCount] = useState("");
+import Profile from "./Profile";
+import Education from "./Education";
+import Skills from "./Skills";
+import Projects from "./Projects";
+import Social from "./Social";
+import FinalResume from "./FinalResume";
+
+function Pages() {
+  const page = useSelector((s) => s.page);
+  const dispatch = useDispatch();
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial" }}>
-      {/* MAIN HEADING */}
-      <h1>RESUME GENERATOR</h1>
+    <>
+      {page === 1 && <Profile />}
+      {page === 2 && <Education />}
+      {page === 3 && <Skills />}
+      {page === 4 && <Projects />}
+      {page === 5 && <Social />}
+      {page === 6 && <FinalResume />}
 
-      {/* PROFILE SECTION */}
-      <section>
-        <h2>Add your profile details</h2>
-        <input type="text" placeholder="Full Name" />
-        <input type="email" placeholder="Email" />
-        <input type="text" placeholder="Phone Number" />
-      </section>
+      <button id="back" onClick={() => page > 1 && dispatch({ type: "BACK" })}>
+        Back
+      </button>
 
-      {/* EDUCATION SECTION */}
-      <section>
-        <h2>Add your Education Details</h2>
-        <input type="text" placeholder="College Name" />
-        <input type="text" placeholder="Degree" />
-        <input type="text" placeholder="Year of Passing" />
-      </section>
+      <button id="next" onClick={() => page < 6 && dispatch({ type: "NEXT" })}>
+        Next
+      </button>
 
-      {/* SKILLS SECTION */}
-      <section>
-        <h2>Add your Skills</h2>
-        <input
-          type="number"
-          value={skillsCount}
-          onChange={(e) => setSkillsCount(e.target.value)}
-        />
-      </section>
-
-      {/* PROJECTS SECTION */}
-      <section>
-        <h2>Add your Mini Projects</h2>
-        <input
-          type="number"
-          value={projectCount}
-          onChange={(e) => setProjectCount(e.target.value)}
-        />
-      </section>
-
-      {/* SOCIAL MEDIA SECTION */}
-      <section>
-        <h2>Add your Social Media Links</h2>
-        <input
-          type="number"
-          value={socialCount}
-          onChange={(e) => setSocialCount(e.target.value)}
-        />
-      </section>
-    </div>
+      <button
+        id="save_continue"
+        onClick={() => page < 6 && dispatch({ type: "NEXT" })}
+      >
+        Save & Continue
+      </button>
+    </>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <Provider store={store}>
+      <Pages />
+    </Provider>
+  );
+}
