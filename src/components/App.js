@@ -15,6 +15,8 @@ function Pages() {
 
   return (
     <>
+    <h1>RESUME GENERATOR</h1>
+
       {page === 1 && <Profile />}
       {page === 2 && <Education />}
       {page === 3 && <Skills />}
