@@ -7,27 +7,18 @@ export default function Skills() {
 
   return (
     <>
-      <input
-        type="text"
-        name="skill"
-        placeholder="Skill"
-        onChange={(e) => setSkill(e.target.value)}
-      />
+      <input name="skill" onChange={e=>setSkill(e.target.value)} />
 
       <button
         id="add_skill"
-        onClick={() =>
-          dispatch({ type: "ADD_SKILL", payload: skill })
-        }
+        onClick={() => skill && dispatch({ type: "ADD_SKILL", payload: skill })}
       >
         Add
       </button>
 
       <button
         id="delete_skill"
-        onClick={() =>
-          dispatch({ type: "DEL_SKILL" })
-        }
+        onClick={() => dispatch({ type: "DEL_SKILL" })}
       >
         Delete
       </button>
