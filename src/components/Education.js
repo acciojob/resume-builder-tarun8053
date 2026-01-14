@@ -26,10 +26,12 @@ export default function Education() {
     <>
       <h2>Add your Education Details</h2>
 
-      <div className="makeStyles-instance-16">
-        {"1"}
-
-        <input name="courseName" value={edu.courseName} onChange={handleChange} />
+      <div className="makeStyles-instance-16">1
+        <input
+          name="courseName"
+          value={edu.courseName}
+          onChange={handleChange}
+        />
         <input
           name="completionYear"
           value={edu.completionYear}
