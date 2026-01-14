@@ -47,8 +47,8 @@ export default function Education() {
         onChange={(e) => setEdu({ ...edu, percentage: e.target.value })}
       />
 
-      {/* Footer class test expects */}
       <div className="makeStyles-footer-15">
+        {/* ONLY ONE contained button so Cypress click works */}
         <Button
           variant="contained"
           color="primary"
@@ -58,8 +58,9 @@ export default function Education() {
           Add
         </Button>
 
+        {/* Make delete NOT contained */}
         <Button
-          variant="contained"
+          variant="outlined"
           color="secondary"
           id="delete"
           onClick={() => dispatch({ type: "DEL_EDU" })}
