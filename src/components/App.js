@@ -15,7 +15,7 @@ function Pages() {
 
   return (
     <>
-    <h1>RESUME GENERATOR</h1>
+      <h1>RESUME GENERATOR</h1>
 
       {page === 1 && <Profile />}
       {page === 2 && <Education />}
@@ -24,11 +24,17 @@ function Pages() {
       {page === 5 && <Social />}
       {page === 6 && <FinalResume />}
 
-      <button id="back" onClick={() => page > 1 && dispatch({ type: "BACK" })}>
+      <button
+        id="back"
+        onClick={() => page > 1 && dispatch({ type: "BACK" })}
+      >
         Back
       </button>
 
-      <button id="next" onClick={() => page < 6 && dispatch({ type: "NEXT" })}>
+      <button
+        id="next"
+        onClick={() => page < 6 && dispatch({ type: "NEXT" })}
+      >
         Next
       </button>
 
