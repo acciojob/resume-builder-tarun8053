@@ -16,20 +16,21 @@ export default function Projects() {
 
   return (
     <>
-      <h2>Add your Projects</h2>
+      {/* Cypress expects this exact heading */}
+      <h2>Add your Mini Projects</h2>
 
       <input
         name="projectName"
         value={project.projectName}
         onChange={handleChange}
       />
-
       <input
         name="techStack"
         value={project.techStack}
         onChange={handleChange}
       />
 
+      {/* Cypress expects this exact selector */}
       <textarea
         name="description"
         value={project.description}
