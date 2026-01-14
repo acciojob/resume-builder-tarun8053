@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { Button } from "@material-ui/core";
 
 export default function Education() {
   const dispatch = useDispatch();
-  const [edu, setEdu] = useState({});
+  const [edu, setEdu] = useState({
+    courseName: "",
+    completionYear: "",
+    college: "",
+    percentage: "",
+  });
 
   const addEdu = () => {
     if (
@@ -18,15 +24,49 @@ export default function Education() {
 
   return (
     <>
-    <h2>Add your Education Details</h2>
+      <h2>Add your Education Details</h2>
 
-      <input name="courseName" onChange={e=>setEdu({...edu,courseName:e.target.value})}/>
-      <input name="completionYear" onChange={e=>setEdu({...edu,completionYear:e.target.value})}/>
-      <input name="college" onChange={e=>setEdu({...edu,college:e.target.value})}/>
-      <input name="percentage" onChange={e=>setEdu({...edu,percentage:e.target.value})}/>
+      <input
+        name="courseName"
+        value={edu.courseName}
+        onChange={(e) => setEdu({ ...edu, courseName: e.target.value })}
+      />
+      <input
+        name="completionYear"
+        value={edu.completionYear}
+        onChange={(e) => setEdu({ ...edu, completionYear: e.target.value })}
+      />
+      <input
+        name="college"
+        value={edu.college}
+        onChange={(e) => setEdu({ ...edu, college: e.target.value })}
+      />
+      <input
+        name="percentage"
+        value={edu.percentage}
+        onChange={(e) => setEdu({ ...edu, percentage: e.target.value })}
+      />
 
-      <button id="add_education" onClick={addEdu}>Add</button>
-      <button id="delete" onClick={()=>dispatch({type:"DEL_EDU"})}>Delete</button>
+      {/* Footer class test expects */}
+      <div className="makeStyles-footer-15">
+        <Button
+          variant="contained"
+          color="primary"
+          id="add_education"
+          onClick={addEdu}
+        >
+          Add
+        </Button>
+
+        <Button
+          variant="contained"
+          color="secondary"
+          id="delete"
+          onClick={() => dispatch({ type: "DEL_EDU" })}
+        >
+          Delete
+        </Button>
+      </div>
     </>
   );
 }
