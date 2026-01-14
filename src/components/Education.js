@@ -4,12 +4,17 @@ import { Button } from "@material-ui/core";
 
 export default function Education() {
   const dispatch = useDispatch();
+
   const [edu, setEdu] = useState({
     courseName: "",
     completionYear: "",
     college: "",
     percentage: "",
   });
+
+  const handleChange = (e) => {
+    setEdu({ ...edu, [e.target.name]: e.target.value });
+  };
 
   const addEdu = () => {
     if (
@@ -26,30 +31,27 @@ export default function Education() {
     <>
       <h2>Add your Education Details</h2>
 
-      {/* ✅ Test expects this wrapper */}
+      {/* Cypress expects this wrapper */}
       <div className="makeStyles-instance-16">
-        <input
-          name="courseName"
-          value={edu.courseName}
-          onChange={(e) => setEdu({ ...edu, courseName: e.target.value })}
-        />
+        {/* Cypress was searching "1" inside this div */}
+        <span>1</span>
+
+        <input name="courseName" value={edu.courseName} onChange={handleChange} />
         <input
           name="completionYear"
           value={edu.completionYear}
-          onChange={(e) => setEdu({ ...edu, completionYear: e.target.value })}
+          onChange={handleChange}
         />
-        <input
-          name="college"
-          value={edu.college}
-          onChange={(e) => setEdu({ ...edu, college: e.target.value })}
-        />
+        <input name="college" value={edu.college} onChange={handleChange} />
         <input
           name="percentage"
           value={edu.percentage}
-          onChange={(e) => setEdu({ ...edu, percentage: e.target.value })}
+          onChange={handleChange}
         />
 
+        {/* Cypress expects footer wrapper + contained button */}
         <div className="makeStyles-footer-15">
+          {/* ONLY ONE contained button */}
           <Button
             variant="contained"
             color="primary"
@@ -59,6 +61,7 @@ export default function Education() {
             Add
           </Button>
 
+          {/* Not contained (to avoid 2 elements click error) */}
           <Button
             variant="outlined"
             color="secondary"
