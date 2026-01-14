@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 export default function Skills() {
   const dispatch = useDispatch();
-  const [skill, setSkill] = useState("1"); // ✅ default 1
+  const [skill, setSkill] = useState("1");
 
   return (
     <>
