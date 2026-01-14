@@ -46,6 +46,6 @@ export default function Projects() {
       <button id="delete" onClick={() => dispatch({ type: "DEL_PROJECT" })}>
         Delete
       </button>
-    </?>
+    </>
   );
 }
