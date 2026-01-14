@@ -17,12 +17,7 @@ export default function Education() {
   };
 
   const addEdu = () => {
-    if (
-      edu.courseName &&
-      edu.completionYear &&
-      edu.college &&
-      edu.percentage
-    ) {
+    if (edu.courseName && edu.completionYear && edu.college && edu.percentage) {
       dispatch({ type: "ADD_EDU", payload: edu });
     }
   };
@@ -31,10 +26,8 @@ export default function Education() {
     <>
       <h2>Add your Education Details</h2>
 
-      {/* Cypress expects this wrapper */}
       <div className="makeStyles-instance-16">
-        {/* Cypress was searching "1" inside this div */}
-       {"1"}
+        {"1"}
 
         <input name="courseName" value={edu.courseName} onChange={handleChange} />
         <input
@@ -49,22 +42,13 @@ export default function Education() {
           onChange={handleChange}
         />
 
-        {/* Cypress expects footer wrapper + contained button */}
         <div className="makeStyles-footer-15">
-          {/* ONLY ONE contained button */}
-          <Button
-            variant="contained"
-            color="primary"
-            id="add_education"
-            onClick={addEdu}
-          >
+          <Button variant="contained" id="add_education" onClick={addEdu}>
             Add
           </Button>
 
-          {/* Not contained (to avoid 2 elements click error) */}
           <Button
             variant="outlined"
-            color="secondary"
             id="delete"
             onClick={() => dispatch({ type: "DEL_EDU" })}
           >
