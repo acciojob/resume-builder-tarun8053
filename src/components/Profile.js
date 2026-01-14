@@ -19,6 +19,7 @@ export default function Profile() {
 
   return (
     <>
+     <h2>Add your profile details</h2>
       <input name="fname" placeholder="First Name" onChange={e=>setData({...data,fname:e.target.value})}/>
       <input name="lname" placeholder="Last Name" onChange={e=>setData({...data,lname:e.target.value})}/>
       <input name="phone" placeholder="Phone" onChange={e=>setData({...data,phone:e.target.value})}/>
@@ -29,3 +30,4 @@ export default function Profile() {
     </>
   );
 }
+
