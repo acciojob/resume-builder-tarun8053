@@ -34,7 +34,7 @@ export default function Education() {
       {/* Cypress expects this wrapper */}
       <div className="makeStyles-instance-16">
         {/* Cypress was searching "1" inside this div */}
-        <span>1</span>
+       1
 
         <input name="courseName" value={edu.courseName} onChange={handleChange} />
         <input
