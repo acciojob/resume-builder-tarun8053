@@ -3,24 +3,49 @@ import { useDispatch } from "react-redux";
 
 export default function Projects() {
   const dispatch = useDispatch();
-  const [proj, setProj] = useState({});
 
-  const addProject = () => {
-    if (proj.projectName && proj.techStack && proj.description) {
-      dispatch({ type: "ADD_PROJECT", payload: proj });
-    }
+  const [project, setProject] = useState({
+    projectName: "",
+    techStack: "",
+    description: "",
+  });
+
+  const handleChange = (e) => {
+    setProject({ ...project, [e.target.name]: e.target.value });
   };
 
   return (
     <>
-    <h2>Add your Mini Projects</h2>
+      <h2>Add your Projects</h2>
 
-      <input name="projectName" onChange={e=>setProj({...proj,projectName:e.target.value})}/>
-      <input name="techStack" onChange={e=>setProj({...proj,techStack:e.target.value})}/>
-      <input name="description" onChange={e=>setProj({...proj,description:e.target.value})}/>
+      <input
+        name="projectName"
+        value={project.projectName}
+        onChange={handleChange}
+      />
 
-      <button id="add_project" onClick={addProject}>Add</button>
-      <button id="delete" onClick={()=>dispatch({type:"DEL_PROJECT"})}>Delete</button>
-    </>
+      <input
+        name="techStack"
+        value={project.techStack}
+        onChange={handleChange}
+      />
+
+      <textarea
+        name="description"
+        value={project.description}
+        onChange={handleChange}
+      />
+
+      <button
+        id="add_project"
+        onClick={() => dispatch({ type: "ADD_PROJECT", payload: project })}
+      >
+        Add
+      </button>
+
+      <button id="delete" onClick={() => dispatch({ type: "DEL_PROJECT" })}>
+        Delete
+      </button>
+    </?>
   );
 }
