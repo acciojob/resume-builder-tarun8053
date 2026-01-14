@@ -4,16 +4,16 @@ const initialState = {
   education: [],
   skills: [],
   projects: [],
-  social: []
+  social: [],
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case "NEXT":
-      return { ...state, page: state.page + 1 };
+      return { ...state, page: state.page < 6 ? state.page + 1 : 6 };
 
     case "BACK":
-      return { ...state, page: state.page - 1 };
+      return { ...state, page: state.page > 1 ? state.page - 1 : 1 };
 
     case "SAVE_PROFILE":
       return { ...state, profile: action.payload };
@@ -22,19 +22,19 @@ export default function reducer(state = initialState, action) {
       return { ...state, education: [...state.education, action.payload] };
 
     case "DEL_EDU":
-      return { ...state, education: state.education.slice(0, -1) };
+      return { ...state, education: [] };
 
     case "ADD_SKILL":
       return { ...state, skills: [...state.skills, action.payload] };
 
     case "DEL_SKILL":
-      return { ...state, skills: state.skills.slice(0, -1) };
+      return { ...state, skills: [] };
 
     case "ADD_PROJECT":
       return { ...state, projects: [...state.projects, action.payload] };
 
     case "DEL_PROJECT":
-      return { ...state, projects: state.projects.slice(0, -1) };
+      return { ...state, projects: [] };
 
     case "ADD_SOCIAL":
       return { ...state, social: [...state.social, action.payload] };
