@@ -1,52 +1,90 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { connect } from "react-redux";
+import { addProject, deleteProject } from "../actions";
 
-export default function Projects() {
-  const dispatch = useDispatch();
-
-  const [project, setProject] = useState({
+const Projects = ({ projects, addProject, deleteProject }) => {
+  const [formData, setFormData] = useState({
     projectName: "",
     techStack: "",
     description: "",
   });
 
   const handleChange = (e) => {
-    setProject({ ...project, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addProject(formData);
+    setFormData({
+      projectName: "",
+      techStack: "",
+      description: "",
+    });
   };
 
   return (
-    <>
-      {/* Cypress expects this exact heading */}
-      <h2>Add your Mini Projects</h2>
+    <div className="projects-section">
+      <h2>Projects</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Project Name:</label>
+          <input
+            type="text"
+            name="projectName"
+            value={formData.projectName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Tech Stack:</label>
+          <input
+            type="text"
+            name="techStack"
+            value={formData.techStack}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Description:</label>
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button id="add_project" type="submit">
+          Add Project
+        </button>
+      </form>
 
-      <input
-        name="projectName"
-        value={project.projectName}
-        onChange={handleChange}
-      />
-      <input
-        name="techStack"
-        value={project.techStack}
-        onChange={handleChange}
-      />
-
-      {/* Cypress expects this exact selector */}
-      <textarea
-        name="description"
-        value={project.description}
-        onChange={handleChange}
-      />
-
-      <button
-        id="add_project"
-        onClick={() => dispatch({ type: "ADD_PROJECT", payload: project })}
-      >
-        Add
-      </button>
-
-      <button id="delete" onClick={() => dispatch({ type: "DEL_PROJECT" })}>
-        Delete
-      </button>
-    </>
+      <div className="projects-list">
+        <h3>Your Projects</h3>
+        {projects.map((project, index) => (
+          <div key={index} className="project-item">
+            <h4>{project.projectName}</h4>
+            <p>Tech Stack: {project.techStack}</p>
+            <p>Description: {project.description}</p>
+            <button id="delete" onClick={() => deleteProject(index)}>
+              Delete
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
   );
-}
+};
+
+const mapStateToProps = (state) => ({
+  projects: state.resume.projects,
+});
+
+export default connect(mapStateToProps, { addProject, deleteProject })(
+  Projects
+);
